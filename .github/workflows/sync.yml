@@ -12,7 +12,7 @@ jobs:
           INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          MYVAR: ${{ MYVAR }}
+          MYVAR: MYVAR1
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
