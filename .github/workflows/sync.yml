@@ -11,7 +11,7 @@ jobs:
     env:
           INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -22,10 +22,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run script
-        env:
-          INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
-          USERNAME: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
         run: |
           pip install requests
           python snowscript.py
