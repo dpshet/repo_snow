@@ -49,6 +49,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
 
       - name: checkout repo content
