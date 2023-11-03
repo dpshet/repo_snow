@@ -1,5 +1,6 @@
 import requests 
 import json 
+import os
 # Replace with your ServiceNow instance URL and API credentials 
 url = 'https://dev142790.service-now.com/api/now/table/sc_req_item' 
 username = 'admin' 
