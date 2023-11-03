@@ -8,6 +8,11 @@ on:
 jobs:
   data_fetch:
     runs-on: ubuntu-latest
+    env:
+          INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          password: ${{ secrets.PASSWORD }}
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -22,7 +27,9 @@ jobs:
           INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          password: ${{ secrets.PASSWORD }}
         run: |
+          pip install requests
           python snowscript.py
 
       - name: Archive logs
