@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1 - Echo the value of a variable in the workflow
-        run: echo "The value of myvar is $myvar"
+        run: echo "The value of myvar is $MYVAR"
