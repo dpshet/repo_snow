@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1 - Echo the value of a secret variable in the workflow
+        run: echo "The value of my secret variable is ${{ secrets.MYSECRET }}"
+
+      - name: Step 2 - Run a Python script
+        env:
+          PASSWORD: ${{ secrets.PASSWORD }}  # Pass the secret to the Python script
         run: |
-           echo "The value of my secret variable is ${{ secrets.PASSWORD }}"
-           pip install requests logging
-           python snowscript.py
+          echo "Running Python script"
+          python snowscript.py  # Replace with the actual path to your Python script
