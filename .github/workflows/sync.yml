@@ -1,74 +1,32 @@
-name: run main.py
-
- 
+name: try fetch
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: Environment to run ansible-playbook against
-        default: DEVINT
-        type: choice
-        options:
-          - DEVINT
-          - QAF1
-          - QAF2
-          - QAF3
-          - QAPERF
-          - PROD
-        required: true
-      limit:
-        description: Limit hosts ran by passing in a group. Multiple groups by be separated by a comma.
-        type: string
-        default: ""
-        required: false
-      secret_id:
-        description: The ID of the secret containing the user credentials.
-        default: secret-ghar-np
-        type: choice
-        options:
-          - secret-ghar-np
-          - svc-prod-ue1-secret-ghar-prod
-  workflow_call:
-    inputs:
-      environment:
-        type: string
-        required: true
-      limit:
-        type: string
-        default: ""
-        required: false
-      secret_id:
-        type: string
-        default: "secret-ghar-np"
-        required: true
-    secrets:
-      PASSWORD:
-        required: true
-
+  push:
+    branches:
+      - main
+  
 
 jobs:
-  build:
+  data_fetch:
     runs-on: ubuntu-latest
-    env:
-      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
-
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
-
-      - name: setup python
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.10' # install the python version needed
+          python-version: '3.x'
 
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests autopep8
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: execute py script # run main.py
+      - name: Run script
         env:
+          INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
+          USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: python snowscript.py
- 
+        run: |
+          python snowscript.py
 
+      - name: Archive logs
+        uses: actions/upload-artifact@v2
+        with:
+          name: logs
+          path: app.log
