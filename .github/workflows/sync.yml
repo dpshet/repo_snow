@@ -8,6 +8,8 @@ on:
 jobs:
   data_fetch:
     runs-on: ubuntu-latest
+    env:
+      MYVAR: ${{ secrets.MYVAR }}
     steps:
       - name: Step 1 - Echo the value of a secret variable in the workflow
         run: echo "The value of my secret variable is ${{ env.MYVAR }}"
