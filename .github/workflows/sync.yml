@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $MYVAR. Today is $MYVAR!"
+        run: echo "$Greeting ${{ MYVAR }}. Today is ${{ MYVAR }}!"
 
 
       - name: Checkout repository
