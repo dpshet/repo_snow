@@ -1,0 +1,14 @@
+---
+name: test-playbook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_playbook:
+    uses: ./.github/workflows/sync.yml
+    secrets: inherit
+    with:
+      secret_id: PASSWORD
