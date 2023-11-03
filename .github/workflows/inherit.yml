@@ -11,4 +11,5 @@ jobs:
     uses: ./.github/workflows/sync.yml
     secrets: inherit
     with:
+      environment: DEVINT
       secret_id: PASSWORD
