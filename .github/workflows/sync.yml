@@ -12,15 +12,16 @@ jobs:
           INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          MYVAR: MYVAR
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
       - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $First_Name. Today is $MYVAR!"
+        run: echo "$Greeting $MYVAR. Today is $MYVAR!"
         env:
-          First_Name: MYVAR
+          MYVAR: MYVAR
 
       - name: Checkout repository
         uses: actions/checkout@v2
