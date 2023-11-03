@@ -11,7 +11,6 @@ jobs:
     env:
           INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
           password: ${{ secrets.PASSWORD }}
     steps:
       - name: Set up Python
@@ -26,7 +25,6 @@ jobs:
         env:
           INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
           USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
           password: ${{ secrets.PASSWORD }}
         run: |
           pip install requests
