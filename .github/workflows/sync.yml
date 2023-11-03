@@ -17,6 +17,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - name: "Say Hello Mona it's Monday"
+        run: echo "$Greeting $First_Name. Today is $MYVAR!"
+        env:
+          First_Name: MYVAR
 
       - name: Checkout repository
         uses: actions/checkout@v2
