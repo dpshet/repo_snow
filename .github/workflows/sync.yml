@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1 - Echo the value of a secret variable in the workflow
-        run: echo "The value of my secret variable is ${{ secrets.MYVAR }}"
+        run: echo "The value of my secret variable is ${{ env.MYVAR }}"
