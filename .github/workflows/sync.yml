@@ -1,9 +1,50 @@
 name: run main.py
 
+ 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to run ansible-playbook against
+        default: DEVINT
+        type: choice
+        options:
+          - DEVINT
+          - QAF1
+          - QAF2
+          - QAF3
+          - QAPERF
+          - PROD
+        required: true
+      limit:
+        description: Limit hosts ran by passing in a group. Multiple groups by be separated by a comma.
+        type: string
+        default: ""
+        required: false
+      secret_id:
+        description: The ID of the secret containing the user credentials.
+        default: secret-ghar-np
+        type: choice
+        options:
+          - secret-ghar-np
+          - svc-prod-ue1-secret-ghar-prod
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+      limit:
+        type: string
+        default: ""
+        required: false
+      secret_id:
+        type: string
+        default: "secret-ghar-np"
+        required: true
+    secrets:
+      PASSWORD:
+        required: true
+
 
 jobs:
   build:
