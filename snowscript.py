@@ -5,7 +5,7 @@ import os
 url = 'https://dev142790.service-now.com/api/now/table/sc_req_item' 
 username = 'admin' 
 password = os.environ.get('PASSWORD')
-password = 'y$2WtPoq-0HJ'
+#password = 'y$2WtPoq-0HJ'
 # Define your query to filter by approved RITMs 
 query = 'approval=approved' 
 # Make an API request to ServiceNow to retrieve approved RITMs 
