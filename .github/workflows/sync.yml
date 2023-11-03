@@ -9,6 +9,8 @@ jobs:
   data_fetch:
     runs-on: ubuntu-latest
     steps:
+      - name: Step 2 - Echo the value of a secret variable in the workflow
+        run: echo "The value of my secret variable is ${{ secrets.MYSECRET }}"
       - name: Checkout the repository
         uses: actions/checkout@v2  # Fetches the repository
 
