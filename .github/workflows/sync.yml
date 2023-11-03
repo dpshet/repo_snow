@@ -1,37 +1,12 @@
-name: try fetch
+name: test
 on:
   push:
     branches:
       - main
-  
 
 jobs:
   data_fetch:
     runs-on: ubuntu-latest
-    env:
-          INSTANCE_URL: ${{ secrets.INSTANCE_URL }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          MYVAR1: MYVAR
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $MYVAR1. Today is $MYVAR1!"
-
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run script
-        run: |
-          pip install requests
-          python snowscript.py
-
-      - name: Archive logs
-        uses: actions/upload-artifact@v2
-        with:
-          name: logs
-          path: app.log
+      - name: Step 1 - Echo the value of a variable in the workflow
+        run: echo "The value of myvar is $myvar"
