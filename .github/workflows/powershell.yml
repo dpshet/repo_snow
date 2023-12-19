@@ -1,0 +1,19 @@
+name: Update Email Address
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update_email:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Run PowerShell script
+ 
+      run: |
+          echo hello
