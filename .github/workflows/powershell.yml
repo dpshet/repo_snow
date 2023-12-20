@@ -1,4 +1,4 @@
-name: Run PowerShell
+name: Update Email Address
 
 on:
   push:
@@ -6,22 +6,30 @@ on:
       - main
 
 jobs:
-  run_powershell:
+  update_email:
     runs-on: windows-latest
-    steps:
-      - name: Run PowerShell commands
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: |
-          $username = $env:USERNAME
-          $password = $env:PASSWORD
-          
-          # PowerShell script using provided credentials
-          $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-          $credential = New-Object System.Management.Automation.PSCredential ($username, $securePassword)
-          
-          # Your AD command here
-          $aduser = Get-ADUser -Identity aws_blah -Credential $credential
 
-          # Further actions or output handling
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Run PowerShell script
+      env:
+        USERNAME: ${{ secrets.YOUR_USERNAME_SECRET }}
+        PASSWORD: ${{ secrets.YOUR_PASSWORD_SECRET }}
+      run: |
+        $User = "Dan Jump"
+        $EmailAddress = "dan.jump@northamerica.contoso.com"
+        $Username = $env:USERNAME
+        $Password = $env:PASSWORD
+
+        $SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
+        $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $Username, $SecurePassword
+
+        $Params = @{
+          Identity = $User
+          EmailAddresses = @{ add = $EmailAddress }
+          Credential = $Credential
+        }
+
+        Set-Mailbox @Params
